@@ -1,0 +1,3 @@
+<select (change)="onChange($event.target.value)">
+  <option *ngFor="let source of sourceList" value={{source}}>{{source}}</option>
+</select>

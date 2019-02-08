@@ -1,0 +1,6 @@
+<div>
+  <ng-template *ngFor="let article of mockNews" let-i="index" let-article="article">
+    <app-article *ngIf="i<4" [article]="article"></app-article>
+  </ng-template>
+  <button>Learn more</button>
+</div>
