@@ -1,0 +1,10 @@
+<app-title></app-title>
+<app-controls></app-controls>
+
+<ul *ngFor=" let article of UserService.mockNews;  let i=index">
+  <li *ngIf="i<limit">
+    <app-article [article]="article"></app-article>
+  </li>
+</ul>
+
+<button (click)='showMore()'>Learn more</button>

@@ -1,0 +1,12 @@
+<form>
+  <select (change)="onChange($event.target.value)">
+    <option *ngFor="let source of sourceList" value={{source}}>{{source}}</option>
+  </select>
+  <input type='text'>
+  <button>Filter</button>
+  <label>
+    <input type="checkbox" [attr.disabled]="UserService.isAuthorized() ? null : ''">
+      Only created by me
+  </label>
+  <button [attr.disabled]="UserService.isAuthorized() ? null : ''">Add article</button>
+</form>

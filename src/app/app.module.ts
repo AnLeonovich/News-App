@@ -1,40 +1,41 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { AuthorizationComponent } from './header/authorization/authorization.component';
-import { ControlsComponent } from './header/controls/controls.component';
-import { SelectSourceComponent } from './header/controls/select-source/select-source.component';
-import { FilterComponent } from './header/controls/filter/filter.component';
-import { CheckboxComponent } from './header/controls/checkbox/checkbox.component';
-import { AddArticleComponent } from './header/controls/add-article/add-article.component';
-import { MainComponent } from './main/main.component';
-import { TitleComponent } from './main/title/title.component';
-import { NewsComponent } from './main/news/news.component';
-import { FooterComponent } from './footer/footer.component';
-import { ArticleComponent } from './main/news/article/article.component';
+import { CreateOrEditComponent } from './components/create-or-edit/create-or-edit.component';
+import { NewsListComponent } from './components/news-list/news-list.component';
+import { ArticleViewComponent } from './components/article-view/article-view.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { UserService } from './services/user.service';
+import { TitleComponent } from './sharedComponents/title/title.component';
+import { ControlsComponent } from './components/controls/controls.component';
+import { ArticleComponent } from './components/article/article.component';
+
+const AppRoutes: Routes = [
+  {path: '', component: NewsListComponent },
+  {path: 'news/:id', component: ArticleViewComponent},
+  {path: 'create', component: CreateOrEditComponent},
+  {path: 'edit', component: CreateOrEditComponent}
+];
 
 @NgModule({
   declarations: [
     AppComponent,
+    CreateOrEditComponent,
+    NewsListComponent,
+    ArticleViewComponent,
     HeaderComponent,
-    AuthorizationComponent,
-    ControlsComponent,
-    SelectSourceComponent,
-    FilterComponent,
-    CheckboxComponent,
-    AddArticleComponent,
-    MainComponent,
-    TitleComponent,
-    NewsComponent,
     FooterComponent,
+    TitleComponent,
+    ControlsComponent,
     ArticleComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(AppRoutes)
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
