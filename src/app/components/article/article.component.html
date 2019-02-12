@@ -8,12 +8,8 @@
     <time><span class='article__info_label'>Published at: </span>{{article.publishedAt}}</time>
   </div> 
   <div class="article__buttons">
-    <form method="get" action="/edit" #formEdit>
-      <button type="submit" class="article__button" [attr.disabled]="userService.isAuthorized() ? null : ''" (click)="formEdit.submit()">Edit</button>
-    </form> 
-    <button type="submit" class='article__button' [attr.disabled]="userService.isAuthorized() ? null : ''">Delete</button>
-    <form method="get" action="/news/{{article.id}}" #form>
-      <button type="submit" class='article__button' (click)="form.submit()">Read</button>
-    </form>
+    <button class="article__button" routerLink="/edit" [attr.disabled]="userService.isAuthorized() ? null : ''">Edit</button>
+    <button class='article__button' [attr.disabled]="userService.isAuthorized() ? null : ''" (click)="onDelete()">Delete</button>
+    <button class='article__button' routerLink="/news/{{article.id}}">Read</button>
   </div>
 </article>

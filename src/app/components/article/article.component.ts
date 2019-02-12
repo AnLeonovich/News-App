@@ -12,4 +12,8 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  onDelete() {
+  	console.log('DELETE')
+  }
 }

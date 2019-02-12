@@ -11,9 +11,9 @@
   </div>
   <div class="full-article__buttons">
     <form class='article__info_form' method="get" action="/edit">
-      <button type="submit" class='full-article__button' [attr.disabled]="userService.isAuthorized() ? null : ''">Edit</button>
+      <button class='full-article__button' routerLink="/edit" [attr.disabled]="userService.isAuthorized() ? null : ''">Edit</button>
     </form> 
-    <button type="submit" class='full-article__button' [attr.disabled]="userService.isAuthorized() ? null : ''">Delete</button>
+    <button class='full-article__button' [attr.disabled]="userService.isAuthorized() ? null : ''">Delete</button>
   </div>
 </article>
 <div class="free-space"></div>

@@ -8,7 +8,5 @@
     <input type="checkbox" [attr.disabled]="userService.isAuthorized() ? null : ''">
       Only created by me
   </label>
-  <form class='addArticle-form' method="get" action="/create" #formCreate>
-    <button [attr.disabled]="userService.isAuthorized() ? null : ''" class="addArticle" (click)="formCreate.submit()">Add article</button>
-  </form>
+  <button [attr.disabled]="userService.isAuthorized() ? null : ''" class="addArticle" routerLink="/create">Add article</button>
 </form>

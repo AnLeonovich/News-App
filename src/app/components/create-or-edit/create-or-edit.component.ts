@@ -13,9 +13,7 @@ export class CreateOrEditComponent implements OnInit {
     this.title = this.route.snapshot.routeConfig.path;
   }
 
-  ngOnInit() {
-    console.log('TEST EDIT', this.userService.isAuthorized())
-  }
+  ngOnInit() {}
 
   onSubmit(myForm) {
     console.log('SAVE', myForm.value)

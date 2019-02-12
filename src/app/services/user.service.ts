@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from "@angular/router";
 
 @Injectable()
 export class UserService {
@@ -71,7 +72,7 @@ export class UserService {
       publishedAt: "2019-02-08T10:16:20Z",
       content: "Canadas largest digital asset exchange QuadrigaCX has claimed to have lost more than $136 million worth of crypto in cold wallets controlled by its CEO Gerald Cotten.\r\nIn an official affidavit filed with the Nova Scotia Supreme Court by Jennifer Robertson, th… [+4331 chars]"
   }]
-  constructor() { }
+  constructor(private router: Router) { }
 
   public login() {
     this.authorized = true;
@@ -79,6 +80,9 @@ export class UserService {
 
   public logout() {
     this.authorized = false;
+    if (this.router.url === '/create' || this.router.url === '/edit') {
+      this.router.navigate(['/']);
+    }
   }
 
   public isAuthorized() {
@@ -99,5 +103,14 @@ export class UserService {
       return el
       }
     })
+  }
+
+  isAuthenticated() {
+    const promise = new Promise(
+      (resolve, reject) => {
+        resolve(this.authorized);
+      }
+    );
+    return promise
   }
 }

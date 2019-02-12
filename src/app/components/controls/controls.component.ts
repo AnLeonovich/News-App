@@ -11,9 +11,7 @@ export class ControlsComponent implements OnInit {
   'Fox News', 'Usa Today', 'The Wall Street Journal', 'MTV News', 'Local News', 'All sources'];
   public selectedSource = 'CNN';
   
-  constructor(public userService: UserService) {
-  	console.log(this.userService.isAuthorized())
-  }
+  constructor(public userService: UserService) {}
 
   ngOnInit() {
   }

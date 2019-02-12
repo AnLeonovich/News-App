@@ -8,9 +8,7 @@ import { UserService } from '../../services/user.service'
 })
 export class TitleComponent implements OnInit {
   @Input() title: string;
-  constructor(private userService: UserService) {
-    console.log(this)
-  }
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
   }
