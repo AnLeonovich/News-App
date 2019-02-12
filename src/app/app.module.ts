@@ -18,7 +18,7 @@ const AppRoutes: Routes = [
   {path: '', component: NewsListComponent },
   {path: 'news/:id', component: ArticleViewComponent},
   {path: 'create', canActivate: [AuthService], component: CreateOrEditComponent},
-  {path: 'edit', canActivate: [AuthService], component: CreateOrEditComponent}
+  {path: 'edit', component: CreateOrEditComponent}
 ];
 
 @NgModule({

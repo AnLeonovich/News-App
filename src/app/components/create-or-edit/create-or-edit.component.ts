@@ -17,7 +17,7 @@ export class CreateOrEditComponent implements OnInit {
     console.log('TEST EDIT', this.userService.isAuthorized())
   }
 
-  onSubmit(myForm: NgForm) {
+  onSubmit(myForm) {
     console.log('SAVE', myForm.value)
   }
 
