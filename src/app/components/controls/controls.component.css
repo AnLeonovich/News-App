@@ -1,0 +1,77 @@
+.controls {
+  text-align: center;
+  padding-top: 5px;
+}
+
+.selectSource {
+  font-family: "Gentium";
+  font-size: 18px;
+  padding: 5px 0;
+  margin-right: 25px;
+  border-radius: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.45)
+}
+
+.selectSource:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.selectSource:focus {
+  outline: none;
+}
+
+.filter-button {
+  font-family: "Gentium";
+  height: 35px;
+  background-color: white;
+  border: 2px solid rgba(0, 0, 0, 0.45);
+  border-radius: 10px;
+  font-size: 18px;
+  width: 100px;
+  margin-right: 25px;
+}
+
+.filter-button:hover,
+.addArticle:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  background-color: #FFE6EB;
+}
+
+.filter-button:focus,
+.filter:focus,
+.addArticle:focus {
+  outline: none;
+}
+
+.filter {
+  font-family: "Gentium";
+  font-size: 18px;
+  padding: 5px 5px;
+  margin: 0 10px;
+  border-radius: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.45);
+}
+
+.createdByMe {
+  font-family: "Gentium";
+  font-size: 18px;
+  margin-right: 25px;
+}
+
+.addArticle-form {
+  display: inline-block;
+}
+
+.addArticle{
+  font-family: "Gentium";
+  height: 35px;
+  background-color: white;
+  border: 2px solid rgba(0, 0, 0, 0.45);
+  border-radius: 10px;
+  font-size: 18px;
+  width: 150px;
+}
+
+.addArticle:disabled {
+  background: rgb(229, 230, 232);
+}

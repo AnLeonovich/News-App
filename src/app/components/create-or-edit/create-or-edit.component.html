@@ -1,3 +1,37 @@
-<p>
-  create-or-edit works!
-</p>
+<app-title [title]="title"></app-title>
+<form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" class="create-form">
+  <div class="left-column">
+    <label class="create-label">Heading
+      <input type="textarea" name="heading" ngModel class="create-input">
+    </label>
+    <label class="create-label">Short description
+      <input type="textarea" name="description" ngModel class="create-input">
+    </label>
+    <label class="create-label">Content
+      <textarea rows="5" name="content" ngModel class="create-input textarea"></textarea>
+    </label>
+  </div>
+  <div class="right-column">
+    <label class="create-label-image" for="image">Image</label>
+    <label class="checkbox-label">URL
+      <input type="radio" name="imageType" value="URL" ngModel>
+    </label>
+    <label class="checkbox-label">File
+      <input type="radio" name="imageType" value="File" ngModel>
+    </label>
+    <input type="textarea" name="image" ngModel class="create-input image-input" id='image'>
+    <label class="create-label">Date
+      <input type="textarea" name="date" ngModel class="create-input">
+    </label>
+    <label class="create-label">Author
+      <input type="textarea" name="author" ngModel class="create-input">
+    </label>
+    <label class="create-label">Source URL
+      <input type="textarea" name="sourceURL" ngModel class="create-input">
+    </label>
+    <div class="create-buttons">
+      <input type="submit" value="Save" class="save-button">
+      <input type="reset" value="Cancel" class="cancel-button">
+    </div>
+  </div>
+</form>

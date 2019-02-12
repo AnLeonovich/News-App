@@ -5,13 +5,15 @@
   <h2 class='article__title'>{{article.title}}</h2>
   <p class='article__description'>{{article.description}}</p>
   <div class='article__info'>
-    <time class='article__info_time'><span class='article__info_label'>Published at: </span>{{article.publishedAt}}</time>
-    <form class='article__info_form' method="get" action="/edit">
-      <button type="submit" class='article__info_button' [attr.disabled]="UserService.isAuthorized() ? null : ''">Edit</button>
+    <time><span class='article__info_label'>Published at: </span>{{article.publishedAt}}</time>
+  </div> 
+  <div class="article__buttons">
+    <form method="get" action="/edit" #formEdit>
+      <button type="submit" class="article__button" [attr.disabled]="userService.isAuthorized() ? null : ''" (click)="formEdit.submit()">Edit</button>
     </form> 
-    <button type="submit" class='article__info_button' [attr.disabled]="UserService.isAuthorized() ? null : ''">Delete</button>
-    <form class='article__info_form' method="get" action="/news/{{article.id}}">
-      <button type="submit" class='article__info_button'>Read</button>
+    <button type="submit" class='article__button' [attr.disabled]="userService.isAuthorized() ? null : ''">Delete</button>
+    <form method="get" action="/news/{{article.id}}" #form>
+      <button type="submit" class='article__button' (click)="form.submit()">Read</button>
     </form>
   </div>
 </article>

@@ -1,21 +1,20 @@
-.articles {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-row-gap: 40px;
-  padding: 40px;
-}
-
 .article {
   display: grid;
   grid-template:
-    "image title" 70px
-    "image description" 110px
-    "image info" 40px
-    /30% 65%;
+    "image title buttons" 60px
+    "image description buttons" 100px
+    "image info buttons" 40px
+    /20% 50% 20%;
   grid-column-gap: 5%;
   border-radius: 20px;
   padding: 20px;
   border: 1px solid rgba(0, 0, 0, 0.45);
+}
+
+.article__buttons {
+  grid-area: buttons;
+  align-self: center;
+  justify-self: center;
 }
 
 .article__image {
@@ -24,7 +23,8 @@
 
 .article__image_img {
   width: 100%;
-  height: 100%;
+  height: 80%;
+  margin: 10% 0;
   border-radius: 20px;
   border: 1px solid rgba(0, 0, 0, 0.45);
 }
@@ -32,6 +32,7 @@
   grid-area: title;
   font-family: "Gentium";
   padding: 5px;
+  font-size: 1.3em;
 }
 
 .article__description {
@@ -43,32 +44,11 @@
 
 .article__info {
   grid-area: info;
-  display: grid;
-  align-content: end;
-  grid-column-gap: 15px;
-  grid-template:
-    "author button" 20px
-    "time button" 20px;
+  padding: 5px;
+  align-self: end;
 }
 
-.article__info_author {
-  grid-area: author;
-  font-family: "Gentium-Reg";
-  align-self: self-end;
-}
-
-.article__info_time {
-  grid-area: time;
-  font-family: "Gentium-Reg";
-  align-self: self-end;
-}
-
-.article__info_form {
-  justify-self: right;
-}
-
-.article__info_button {
-  grid-area: button;
+.article__button {
   font-family: "Gentium";
   height: 40px;
   background-color: white;
@@ -76,22 +56,23 @@
   border-radius: 10px;
   font-size: 18px;
   width: 100px;
+  margin-bottom: 10px;
 }
 
-.article__info_label {
-  font-family: "Gentium";
-}
-
-.article__info_button:hover {
+.article__button:hover {
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   background-color: #FFE6EB;
 }
 
-.article__info_button:focus {
+.article__button:focus {
   outline: none;
 }
 
-@media screen and (min-width: 100px) and (max-width: 950px) {
+.article__button:disabled {
+  background: rgb(229, 230, 232);
+}
+
+/* @media screen and (min-width: 100px) and (max-width: 950px) {
   .articles {
     padding: 20px 0;
   }
@@ -188,4 +169,4 @@
     margin-bottom: 20px;
     width: 100%;
   }
-}
+} */

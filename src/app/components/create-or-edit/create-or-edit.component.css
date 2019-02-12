@@ -1,0 +1,98 @@
+.create-form {
+  width: 70%;
+  margin: 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.45);
+  border-radius: 20px;
+  padding: 20px;
+  display: grid;
+  grid-template:
+    "leftColumn rightColumn"
+    /50% 50%;
+}
+
+.left-column {
+  grid-area: leftColumn;
+  padding: 15px; 
+}
+
+.right-column {
+  grid-area: rightColumn;
+  padding: 15px; 
+}
+
+.create-label {
+  display: block;
+  font-family: "Gentium";
+  font-size: 1.1em;
+  padding-bottom: 15px;
+}
+
+.checkbox-label {
+  font-family: "Gentium";
+  font-size: 1.1em;
+  padding-bottom: 15px;
+  margin-right: 20px;
+}
+
+.create-label-image {
+  margin-right: 30px;
+  font-family: "Gentium";
+  font-size: 1.1em;
+}
+
+.image-input {
+  margin-bottom: 15px;
+}
+
+.create-input {
+  display: block;
+  font-family: "Gentium";
+  font-size: 18px;
+  padding: 5px 5px;
+  width: 80%;
+  border-radius: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.45);
+  margin-top: 5px;
+}
+
+.create-input:focus {
+  outline: none;
+}
+
+.textarea {
+  padding: 2px 5px;
+  resize: none;
+}
+
+.create-buttons {
+  margin-top: 10px;
+  width: 80%;
+  text-align: center;
+}
+
+.save-button,
+.cancel-button {
+  font-family: "Gentium";
+  height: 40px;
+  background-color: white;
+  border: 2px solid rgba(0, 0, 0, 0.45);
+  border-radius: 10px;
+  font-size: 18px;
+  width: 100px;
+  margin-bottom: 10px;
+}
+
+.save-button {
+  margin-right: 25px;
+}
+
+.save-button:hover,
+.cancel-button:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  background-color: #FFE6EB;
+}
+
+.save-button:focus,
+.cancel-button:focus {
+  outline: none;
+}

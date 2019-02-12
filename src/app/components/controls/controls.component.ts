@@ -11,15 +11,15 @@ export class ControlsComponent implements OnInit {
   'Fox News', 'Usa Today', 'The Wall Street Journal', 'MTV News', 'Local News', 'All sources'];
   public selectedSource = 'CNN';
   
-  constructor(public UserService: UserService) {
-  	console.log(this.UserService.isAuthorized())
+  constructor(public userService: UserService) {
+  	console.log(this.userService.isAuthorized())
   }
 
   ngOnInit() {
   }
 
   onChange(selectedSource) {
-    this.UserService.selectSource(selectedSource)
+    this.userService.selectSource(selectedSource)
   }
 
 }

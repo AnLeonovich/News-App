@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../services/user.service'
 
 @Component({
@@ -7,8 +7,10 @@ import { UserService } from '../../services/user.service'
   styleUrls: ['./title.component.css']
 })
 export class TitleComponent implements OnInit {
-
-  constructor(private UserService: UserService) { }
+  @Input() title: string;
+  constructor(private userService: UserService) {
+    console.log(this)
+  }
 
   ngOnInit() {
   }

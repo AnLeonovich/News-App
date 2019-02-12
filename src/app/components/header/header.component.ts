@@ -8,19 +8,19 @@ import { UserService } from '../../services/user.service'
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private UserService: UserService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
   }
 
   login() {
-    this.UserService.login();
-    console.log('login', this.UserService.isAuthorized())
+    this.userService.login();
+    console.log('login', this.userService.isAuthorized())
   }
 
   logout() {
-  	this.UserService.logout();
-    console.log('logout', this.UserService.isAuthorized())
+  	this.userService.logout();
+    console.log('logout', this.userService.isAuthorized())
   }
 
 }

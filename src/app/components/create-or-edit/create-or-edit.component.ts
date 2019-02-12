@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router'
+import { UserService } from '../../services/user.service'
 
 @Component({
   selector: 'app-create-or-edit',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-or-edit.component.css']
 })
 export class CreateOrEditComponent implements OnInit {
-
-  constructor() { }
+  public title: string;
+  constructor(private route: ActivatedRoute, public userService: UserService) {
+    this.title = this.route.snapshot.routeConfig.path;
+  }
 
   ngOnInit() {
+    console.log('TEST EDIT', this.userService.isAuthorized())
+  }
+
+  onSubmit(myForm: NgForm) {
+    console.log('SAVE', myForm.value)
   }
 
 }

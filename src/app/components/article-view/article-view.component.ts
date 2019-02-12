@@ -8,14 +8,13 @@ import { UserService } from '../../services/user.service'
   styleUrls: ['./article-view.component.css']
 })
 export class ArticleViewComponent implements OnInit {
-  private article;
-  constructor(private route: ActivatedRoute, public UserService: UserService) {
-    this.article = this.UserService.getArticle(this.route.snapshot.params['id'])
-    console.log(this.article)
+  private article: Object;
+  constructor(private route: ActivatedRoute, public userService: UserService) {
+    this.article = this.userService.getArticle(this.route.snapshot.params['id'])
   }
 
   ngOnInit() {
-    this.article = this.UserService.getArticle(this.route.snapshot.params['id'])
+    this.article = this.userService.getArticle(this.route.snapshot.params['id'])
   }
 
 }

@@ -1,0 +1,33 @@
+header {
+  padding: 15px 15px 0;
+}
+
+.header_button {
+  font-family: "Gentium";
+  height: 40px;
+  background-color: white;
+  border: 2px solid rgba(0, 0, 0, 0.45);
+  border-radius: 10px;
+  font-size: 18px;
+  width: 100px;
+  float: right;
+}
+
+.header_button:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  background-color: #FFE6EB;
+}
+
+.header_button:focus {
+  outline: none;
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.header_button:last-child {
+  margin-right: 15px;
+}

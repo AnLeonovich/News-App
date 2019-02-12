@@ -8,7 +8,7 @@ import { UserService } from '../../services/user.service'
 })
 export class ArticleComponent implements OnInit {
   @Input() article: Object;
-  constructor(public UserService: UserService) { }
+  constructor(public userService: UserService) { }
 
   ngOnInit() {
   }
