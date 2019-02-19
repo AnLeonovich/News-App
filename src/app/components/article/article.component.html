@@ -5,11 +5,11 @@
   <h2 class='article__title'>{{article.title}}</h2>
   <p class='article__description'>{{article.description}}</p>
   <div class='article__info'>
-    <time><span class='article__info_label'>Published at: </span>{{article.publishedAt}}</time>
+    <time><span class='article__info_label'>Published at: </span>{{article.publishedAt | date}}</time>
   </div> 
   <div class="article__buttons">
-    <button class="article__button" routerLink="/edit" [attr.disabled]="userService.isAuthorized() ? null : ''">Edit</button>
-    <button class='article__button' [attr.disabled]="userService.isAuthorized() ? null : ''" (click)="onDelete()">Delete</button>
+    <button class="article__button" routerLink="/edit/{{article.id}}" *ngIf="show" [attr.disabled]="userService.isAuthorized() ? null : ''">Edit</button>
+    <button class='article__button' *ngIf="show" [attr.disabled]="userService.isAuthorized() ? null : ''" (click)="onDelete()">Delete</button>
     <button class='article__button' routerLink="/news/{{article.id}}">Read</button>
   </div>
 </article>

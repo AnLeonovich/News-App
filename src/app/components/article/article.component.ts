@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserService } from '../../services/user.service'
+import { UserService } from '../../services/user.service';
+import { NewsService } from '../../services/news.service';
 
 @Component({
   selector: 'app-article',
@@ -7,13 +8,14 @@ import { UserService } from '../../services/user.service'
   styleUrls: ['./article.component.css']
 })
 export class ArticleComponent implements OnInit {
-  @Input() article: Object;
-  constructor(public userService: UserService) { }
+  @Input() article;
+  @Input() show: Object;
+  constructor(public userService: UserService, public newsService: NewsService) { }
 
   ngOnInit() {
   }
 
-  onDelete() {
-  	console.log('DELETE')
+  onDelete(data) {
+    this.newsService.deleteArticle(this.article._id)
   }
 }

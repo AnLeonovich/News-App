@@ -1,33 +1,33 @@
 <app-title [title]="title"></app-title>
-<form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" class="create-form">
+<form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" class="create-form" [formGroup]="articleFormGroup">
   <div class="left-column">
     <label class="create-label">Heading
-      <input type="textarea" name="heading" ngModel class="create-input">
+      <input type="textarea" name="heading" class="create-input" [formControl]="headingControl">
     </label>
     <label class="create-label">Short description
-      <input type="textarea" name="description" ngModel class="create-input">
+      <input type="textarea" name="description" class="create-input" [formControl]="descriptionControl">
     </label>
     <label class="create-label">Content
-      <textarea rows="5" name="content" ngModel class="create-input textarea"></textarea>
+      <textarea rows="5" name="content" class="create-input textarea" [formControl]="contentControl"></textarea>
     </label>
   </div>
   <div class="right-column">
     <label class="create-label-image" for="image">Image</label>
     <label class="checkbox-label">URL
-      <input type="radio" name="imageType" value="URL" ngModel>
+      <input type="radio" name="imageType" value="URL" [formControl]="imageTypeControl">
     </label>
     <label class="checkbox-label">File
-      <input type="radio" name="imageType" value="File" ngModel>
+      <input type="radio" name="imageType" value="File" [formControl]="imageTypeControl">
     </label>
-    <input type="textarea" name="image" ngModel class="create-input image-input" id='image'>
+    <input type="textarea" name="image" class="create-input image-input" id='image' [formControl]="imageControl">
     <label class="create-label">Date
-      <input type="textarea" name="date" ngModel class="create-input">
+      <input type="textarea" name="date" class="create-input" [formControl]="dateControl">
     </label>
     <label class="create-label">Author
-      <input type="textarea" name="author" ngModel class="create-input">
+      <input type="textarea" name="author" class="create-input" [formControl]="authorControl">
     </label>
     <label class="create-label">Source URL
-      <input type="textarea" name="sourceURL" ngModel class="create-input">
+      <input type="textarea" name="sourceURL" class="create-input" [formControl]="sourceControl">
     </label>
     <div class="create-buttons">
       <input type="submit" value="Save" class="save-button">

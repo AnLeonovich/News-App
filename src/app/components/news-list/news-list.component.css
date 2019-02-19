@@ -1,6 +1,7 @@
 .newsList{
-  margin: 20px 250px;
   padding: 0;
+  max-width: 1000px;
+  margin: 20px auto;
 }
 
 .news {
@@ -13,9 +14,14 @@
 }
 
 .learn-more_wrapper {
-  width: calc(100% - 500px);
-  padding: 0 250px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
+
+.no-matches {
+  text-align: center;
+}
+
 .learn-more {
   font-family: "Gentium";
   height: 40px;
@@ -26,6 +32,9 @@
   width: 100%;
 }
 
+.learn-more:disabled {
+  background: rgb(229, 230, 232);
+}
 .learn-more:hover {
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   background-color: #FFE6EB;

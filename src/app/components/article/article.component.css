@@ -57,6 +57,11 @@
   font-size: 18px;
   width: 100px;
   margin-bottom: 10px;
+  display: block;
+}
+
+.article__button:last-child {
+  margin-bottom: 0;
 }
 
 .article__button:hover {

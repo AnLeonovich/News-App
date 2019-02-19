@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserService } from '../../services/user.service'
+import { NewsService } from '../../services/news.service'
 
 @Component({
   selector: 'app-title',
@@ -8,9 +8,9 @@ import { UserService } from '../../services/user.service'
 })
 export class TitleComponent implements OnInit {
   @Input() title: string;
-  constructor(private userService: UserService) {}
 
-  ngOnInit() {
-  }
+  constructor(private newsService: NewsService) {}
+
+  ngOnInit() {}
 
 }

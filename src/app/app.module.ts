@@ -9,16 +9,19 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
+import { NewsService } from './services/news.service';
 import { TitleComponent } from './sharedComponents/title/title.component';
 import { ControlsComponent } from './components/controls/controls.component';
 import { ArticleComponent } from './components/article/article.component';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http';
+import { FilterPipe } from './pipes/filter.pipe'
 
 const AppRoutes: Routes = [
   {path: '', component: NewsListComponent },
   {path: 'news/:id', component: ArticleViewComponent},
   {path: 'create', canActivate: [AuthService], component: CreateOrEditComponent},
-  {path: 'edit', canActivate: [AuthService], component: CreateOrEditComponent}
+  {path: 'edit/:id', canActivate: [AuthService], component: CreateOrEditComponent}
 ];
 
 @NgModule({
@@ -31,14 +34,21 @@ const AppRoutes: Routes = [
     FooterComponent,
     TitleComponent,
     ControlsComponent,
-    ArticleComponent
+    ArticleComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(AppRoutes),
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [UserService, AuthService],
+  providers: [
+    UserService,
+    AuthService,
+    NewsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

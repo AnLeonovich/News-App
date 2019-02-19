@@ -1,12 +1,12 @@
-<form class="controls">
-  <select (change)="onChange($event.target.value)" class="selectSource">
-    <option *ngFor="let source of sourceList" value={{source}}>{{source}}</option>
+<div class="controls">
+  <select (change)="onChange($event.target.value)" class="selectSource" [(ngModel)]="nrSelect">
+    <option *ngFor="let source of sourceList" value={{source.id}}>{{source.name}}</option>
   </select>
-  <input type='text' placeholder="Type your text" class="filter">
-  <button class="filter-button">Filter</button>
+  <input type='text' placeholder="Type your text" class="filter" #filterInput>
+  <button class="filter-button" (click)="changeFilter(filterInput.value)">Filter</button>
   <label class="createdByMe">
-    <input type="checkbox" [attr.disabled]="userService.isAuthorized() ? null : ''">
+    <input type="checkbox" [attr.disabled]="userService.isAuthorized() ? null : ''" (change)="checkboxChange($event.target.checked)">
       Only created by me
   </label>
   <button [attr.disabled]="userService.isAuthorized() ? null : ''" class="addArticle" routerLink="/create">Add article</button>
-</form>
+</div>
