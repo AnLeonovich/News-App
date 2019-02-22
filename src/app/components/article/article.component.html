@@ -1,6 +1,6 @@
 <article class='article'>
   <div class='article__image'>
-    <img alt='Article intro picture' src={{article.urlToImage}} class='article__image_img'>
+    <img alt='Article intro picture' (error)="errorHandler($event)" class='article__image_img' src="{{article.urlToImage}}">
   </div>
   <h2 class='article__title'>{{article.title}}</h2>
   <p class='article__description'>{{article.description}}</p>
@@ -8,8 +8,8 @@
     <time><span class='article__info_label'>Published at: </span>{{article.publishedAt | date}}</time>
   </div> 
   <div class="article__buttons">
-    <button class="article__button" routerLink="/edit/{{article.id}}" *ngIf="show" [attr.disabled]="userService.isAuthorized() ? null : ''">Edit</button>
-    <button class='article__button' *ngIf="show" [attr.disabled]="userService.isAuthorized() ? null : ''" (click)="onDelete()">Delete</button>
+    <button class="article__button" routerLink="/edit/{{article.id}}" *ngIf="show" [disabled]="!userService.isAuthorized()">Edit</button>
+    <button class='article__button' *ngIf="show" [disabled]="!userService.isAuthorized()" (click)="onDelete()">Delete</button>
     <button class='article__button' routerLink="/news/{{article.id}}">Read</button>
   </div>
 </article>

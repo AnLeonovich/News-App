@@ -2,41 +2,50 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators'; 
 import { Router } from "@angular/router";
+import { environment } from '../../environments/environment';
+import { Sources } from '../models/sources'
+import { News } from '../models/news'
+import { LocalNews } from '../models/local'
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class NewsService {
-  private NEWS_CHANNELS = ['cnn', 'google-news', 'the-washington-times', 'the-new-york-times', 'national-geographic',
-  'fox-news', 'usa-today', 'the-wall-street-journal', 'mtv-news']
+  private newsChnnels = environment.newsChnnels;
   private selectedSource;
   public articles;
   public updatedSource: EventEmitter<any> = new EventEmitter();
   public updateFilter: EventEmitter<[{}]> = new EventEmitter();
-  private httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
-  constructor(private http: HttpClient, private router: Router) { }
+  private httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json'}) };
+  public sourcesList;
+
+  constructor(private http: HttpClient, private router: Router) {}
 
   public getSources() {
-    return this.http.get<any>('https://newsapi.org/v2/sources?apiKey=e3215bd34807454996b9c3b1444aa82a')
-    .pipe(
-        map((response) => {
-          let sourcesList = []
-          let allSources = []
-          let i = 0
-          while (i < response.sources.length) {
-            if (this.NEWS_CHANNELS.indexOf(response.sources[i].id) >= 0) {
-              sourcesList.push(response.sources[i])
-              allSources.push(response.sources[i].id)
+    if (this.sourcesList) {
+      return this.sourcesList
+    } else {
+      return this.http.get<Sources>(environment.sourcesURL)
+      .pipe(
+          map((response) => {
+            this.sourcesList = []
+            let allSources = []
+            let i = 0
+            while (i < response.sources.length) {
+              if (this.newsChnnels.indexOf(response.sources[i].id) >= 0) {
+                this.sourcesList.push(response.sources[i])
+                allSources.push(response.sources[i].id)
+              }
+              i++
             }
-            i++
-          }
 
-          sourcesList.push({name: 'All sources', id: allSources.join(',')}, {name: 'Local News', id: 'local'})
+            this.sourcesList.push({name: 'All sources', id: allSources.join(',')}, {name: 'Local News', id: 'local'})
 
-          return sourcesList
-        })
-      );
+            return this.sourcesList
+          })
+        );
+    }
   }
 
   public selectSource(source) {
@@ -50,7 +59,7 @@ export class NewsService {
 
   public getArticles() {
     if (this.selectedSource.id !== 'local') {
-      return this.http.get<any>(`https://newsapi.org/v2/top-headlines?sources=${this.selectedSource.id}&apiKey=e3215bd34807454996b9c3b1444aa82a`)
+      return this.http.get<News>(`${environment.topHeadlines}${this.selectedSource.id}${environment.apiKey}`)
       .pipe(
         map((response) => {
           this.articles = response.articles.map((article, index) => {
@@ -60,7 +69,7 @@ export class NewsService {
         })
       );
     } else {
-      return this.http.get<any>(`http://localhost:3000/`)
+      return this.http.get<Array<LocalNews>>(`${environment.localService}`)
       .pipe(
         map((response) => {
           this.articles = response.map((article, index) => {
@@ -84,19 +93,30 @@ export class NewsService {
     this.updateFilter.emit(keyword);
   }
 
-  public editArticle(id, newValue) {
-    return this.http.put(`http://localhost:3000/news/${id}`, JSON.stringify(newValue), { ...this.httpOptions, responseType: 'text'}).subscribe((data: any)=> {
-      this.router.navigate(['/']);
+  public editArticle(id, newValue, path) {
+    return this.http.put(`${environment.localServiceNews}${id}`, JSON.stringify(newValue), { ...this.httpOptions, responseType: 'text'}).subscribe((data: any)=> {
+      this.getArticles().subscribe((data) => {
+        this.router.navigate([`/news/${path}`]);
+      })
     });    
   }
 
   public addArticle(newArticle) {
-    return this.http.post(`http://localhost:3000/news`, JSON.stringify(newArticle), { ...this.httpOptions, responseType: 'text'}).subscribe((data:any)=>{
+    return this.http.post(`${environment.localServiceNews}`, JSON.stringify(newArticle), { ...this.httpOptions, responseType: 'text'}).subscribe((data:any)=>{
       this.router.navigate(['/']);
+      this.selectSource({name: 'Local News', id: 'local'})
     });
   }
 
-  public deleteArticle(id) {
-    return this.http.delete(`http://localhost:3000/news/${id}`, { ...this.httpOptions, responseType: 'text'}).subscribe();
+  public deleteArticle(id, shouldNavigate) {
+    return this.http.delete(`${environment.localServiceNews}${id}`, { ...this.httpOptions, responseType: 'text'}).subscribe(() => {
+      if (shouldNavigate) {
+        this.router.navigate(['/']);
+      }
+    });
+  }
+
+  public cancelForm() {
+    this.router.navigate(['/']);
   }
 }

@@ -15,9 +15,7 @@ export class FilterPipe implements PipeTransform {
       return value
     } else {
       let result = value.filter( (value) => {
-        if (this.filter(value, keyword)) {
-          return this.filter(value, keyword)
-        }
+        return this.filter(value, keyword) || null
       })
       filterCount.count = result.length;
       return result

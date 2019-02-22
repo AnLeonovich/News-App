@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service'
 import { NewsService } from '../../services/news.service'
+import { Sources } from '../../models/sources'
 
 @Component({
   selector: 'app-controls',
@@ -8,25 +9,34 @@ import { NewsService } from '../../services/news.service'
   styleUrls: ['./controls.component.css']
 })
 export class ControlsComponent implements OnInit {
-  public selectedSource;
-  private sourceList;
+  private selectedSource;
+  public sourceList;
   public nrSelect;
-  constructor(public userService: UserService, private newsService: NewsService) {
+  public checked = false;
+  constructor(public userService: UserService, private newsService: NewsService) {}
+
+  ngOnInit() {
     this.newsService.updatedSource.subscribe((data: any) => {
       this.nrSelect = data;
     })
-  }
 
-  ngOnInit() {
-    this.newsService.getSources().subscribe((data: any) => {
-      this.sourceList = data;
-      this.selectedSource = this.sourceList[0];
-      this.newsService.selectSource(this.sourceList[0])
-    });
+    this.selectedSource = this.newsService.getSource();
+
+    if (!this.selectedSource) {
+      this.newsService.getSources().subscribe((data: Sources) => {
+        this.sourceList = data;
+        this.selectedSource = this.sourceList[0];
+        this.newsService.selectSource(this.sourceList[0])
+      });
+    } else {
+      this.sourceList = this.newsService.getSources();
+      this.newsService.selectSource(this.selectedSource);
+    }
   }
 
   onChange(selectedSource) {
-    this.newsService.selectSource(this.sourceList.filter(source => source.id === selectedSource)[0]);
+    this.checked = false;
+    this.newsService.selectSource(this.sourceList.find(source => source.id === selectedSource));
   }
 
   changeFilter(keyWord) {
@@ -34,8 +44,9 @@ export class ControlsComponent implements OnInit {
   }
 
   checkboxChange(checked) {
+    this.checked = true;
     if (checked) {
-      this.newsService.selectSource(this.sourceList.filter(source => source.id === 'local')[0]);
+      this.newsService.selectSource(this.sourceList.find(source => source.id === 'local'));
     } else {
       this.newsService.selectSource(this.sourceList[0]);
     }

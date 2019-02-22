@@ -4,12 +4,12 @@
 <ul class="newsList">
 	<ng-container  *ngFor=" let article of articleList | filter: filterValue: filterCount;  let i=index">
     <li *ngIf="i<limit" class="news">
-      <app-article [article]="article" [show]="show"></app-article>
+      <app-article [article]="article" [show]="show" (Delete)="onDelete($event)"></app-article>
     </li>
   </ng-container>
 </ul>
 
-<h3 *ngIf="filterCount.count === 0" class="no-matches">No matches</h3>
+<h3 *ngIf="filterCount.count === 0" class="no-matches">No articles</h3>
 
 <div class="learn-more_wrapper">
   <button (click)='showMore()' class="learn-more" *ngIf="learnMore && filterCount.count > 0" [attr.disabled]="filterCount.count > limit ? null : ''">Learn more</button>

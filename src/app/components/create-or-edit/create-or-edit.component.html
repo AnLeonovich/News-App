@@ -1,37 +1,37 @@
 <app-title [title]="title"></app-title>
-<form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" class="create-form" [formGroup]="articleFormGroup">
+<form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" class="create-form" [formGroup]="CreateForm">
   <div class="left-column">
     <label class="create-label">Heading
-      <input type="textarea" name="heading" class="create-input" [formControl]="headingControl">
+      <input type="textarea" name="heading" class="create-input" formControlName="title">
     </label>
     <label class="create-label">Short description
-      <input type="textarea" name="description" class="create-input" [formControl]="descriptionControl">
+      <input type="textarea" name="description" class="create-input" formControlName="description">
     </label>
     <label class="create-label">Content
-      <textarea rows="5" name="content" class="create-input textarea" [formControl]="contentControl"></textarea>
+      <textarea rows="5" name="content" class="create-input textarea" formControlName="content"></textarea>
     </label>
   </div>
   <div class="right-column">
     <label class="create-label-image" for="image">Image</label>
     <label class="checkbox-label">URL
-      <input type="radio" name="imageType" value="URL" [formControl]="imageTypeControl">
+      <input type="radio" name="imageType" value="URL" formControlName="imageType">
     </label>
     <label class="checkbox-label">File
-      <input type="radio" name="imageType" value="File" [formControl]="imageTypeControl">
+      <input type="radio" name="imageType" value="File" formControlName="imageType">
     </label>
-    <input type="textarea" name="image" class="create-input image-input" id='image' [formControl]="imageControl">
+    <input type="textarea" name="image" class="create-input image-input" id='image' formControlName="urlToImage">
     <label class="create-label">Date
-      <input type="textarea" name="date" class="create-input" [formControl]="dateControl">
+      <input type="textarea" name="date" class="create-input" formControlName="publishedAt">
     </label>
     <label class="create-label">Author
-      <input type="textarea" name="author" class="create-input" [formControl]="authorControl">
+      <input type="textarea" name="author" class="create-input" formControlName="author">
     </label>
     <label class="create-label">Source URL
-      <input type="textarea" name="sourceURL" class="create-input" [formControl]="sourceControl">
+      <input type="textarea" name="sourceURL" class="create-input" formControlName="url">
     </label>
     <div class="create-buttons">
-      <input type="submit" value="Save" class="save-button">
-      <input type="reset" value="Cancel" class="cancel-button">
+      <input type="submit" value="Save" class="save-button" [disabled]="myForm.invalid">
+      <input type="reset" value="Cancel" class="cancel-button" (click)="onCancel()">
     </div>
   </div>
 </form>

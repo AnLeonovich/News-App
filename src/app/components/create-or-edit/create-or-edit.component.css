@@ -96,3 +96,11 @@
 .cancel-button:focus {
   outline: none;
 }
+
+.save-button:disabled {
+  background: rgb(229, 230, 232);
+}
+
+.create-input.ng-touched.ng-invalid {
+  border: 2px solid rgba(216, 49, 34);
+}

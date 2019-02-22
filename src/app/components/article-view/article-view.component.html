@@ -1,17 +1,18 @@
 <app-title></app-title>
 <article class='full-article'>
   <div class='full-article__image'>
-    <img alt='Article intro picture' src={{article.urlToImage}} class='full-article__image_img'>
+    <img alt='Article intro picture' src={{article.urlToImage}} class='full-article__image_img' (error)="errorHandler($event)">
   </div>
   <h2 class='full-article__title'>{{article.title}}</h2>
   <p class='full-article__description'>{{article.content}}</p>
   <div class='full-article__info'>
     <time class='full-article__info_time'>Published at: {{article.publishedAt | date}}</time>
     <p class='full-article__info_author'>Author: {{article.author || 'Unknown'}}</p>
+    <a href={{article.url}} class='full-article__info_url'>Original article</a>
   </div>
   <div class="full-article__buttons" *ngIf="local">
-    <button class='full-article__button' routerLink="/edit/{{article.id}}" [attr.disabled]="userService.isAuthorized() ? null : ''">Edit</button>
-    <button class='full-article__button' [attr.disabled]="userService.isAuthorized() ? null : ''" (click)="onDelete()">Delete</button>
+    <button class='full-article__button' routerLink="/edit/{{article.id}}" [disabled]="!userService.isAuthorized()">Edit</button>
+    <button class='full-article__button' [disabled]="!userService.isAuthorized()" (click)="onDelete()">Delete</button>
   </div>
 </article>
 <div class="free-space"></div>

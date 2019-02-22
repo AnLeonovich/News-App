@@ -46,9 +46,9 @@
 
 
 .full-article__info_author,
-.full-article__info_time {
+.full-article__info_time,
+.full-article__info_url  {
   font-size: 1.1em;
-  margin-bottom: 5px;
 }
 
 .full-article__info {

@@ -3,7 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  newsChnnels: ['cnn', 'google-news', 'the-washington-times', 'the-new-york-times', 'national-geographic',
+  'fox-news', 'usa-today', 'the-wall-street-journal', 'mtv-news'],
+  sourcesURL: 'https://newsapi.org/v2/sources?apiKey=e3215bd34807454996b9c3b1444aa82a',
+  apiKey: '&apiKey=e3215bd34807454996b9c3b1444aa82a',
+  topHeadlines: 'https://newsapi.org/v2/top-headlines?sources=',
+  localService: 'http://localhost:3000/',
+  localServiceNews: 'http://localhost:3000/news/'
 };
 
 /*

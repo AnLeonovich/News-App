@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from '../../services/news.service';
+import { News } from '../../models/news'
+import { LocalNews } from '../../models/local'
 
 @Component({
   selector: 'app-news-list',
@@ -7,28 +9,25 @@ import { NewsService } from '../../services/news.service';
   styleUrls: ['./news-list.component.css']
 })
 export class NewsListComponent implements OnInit {
-  private limit: number = 4;
-  private learnMore: boolean = true;
-  private hideExtra: boolean = false;
+  public limit: number = 4;
+  public learnMore: boolean = true;
+  public hideExtra: boolean = false;
   public articleList;
   public filterValue = [];
   public show: boolean = false;
   public filterCount = { count: 0 };
-  constructor(public newsService: NewsService) {
-    this.newsService.updatedSource.subscribe((data: any)=>{
-      if(data === 'local') {
-        this.show = true;
-      } else {
-        this.show = false;
-      }
-      this.newsService.getArticles().subscribe((data: any) => {
+  private updatedSourceSubscription;
+  constructor(public newsService: NewsService) {}
+
+  ngOnInit() {
+    this.updatedSourceSubscription = this.newsService.updatedSource.subscribe((data: any)=>{
+      this.show = (data === 'local')
+      this.newsService.getArticles().subscribe((data: News | LocalNews) => {
         this.articleList = data;
         this.hide();
       });    
     })
-  }
-
-  ngOnInit() {
+    
     this.newsService.updateFilter.subscribe((data: any)=>{
       this.filterValue = data.split(' ');
     })
@@ -46,4 +45,11 @@ export class NewsListComponent implements OnInit {
     this.hideExtra = false;
   }
 
+  onDelete(id) {
+    this.articleList = this.articleList.filter(article => article._id !== id)
+  }
+
+  ngOnDestroy() {
+    this.updatedSourceSubscription.unsubscribe()
+  }
 }
