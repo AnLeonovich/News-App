@@ -41,7 +41,6 @@ export class NewsService {
             }
 
             this.sourcesList.push({name: 'All sources', id: allSources.join(',')}, {name: 'Local News', id: 'local'})
-
             return this.sourcesList
           })
         );
@@ -82,6 +81,7 @@ export class NewsService {
   }
 
   public getArticle(id) {
+    console.log('TEST', id)
     let article = this.articles.filter((article) => {
       return article.id === parseInt(id);
     })

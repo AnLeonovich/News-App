@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UserService {
-  private authorized: boolean = false;
+  public authorized: boolean = false;
 
   constructor(private router: Router) { }
 

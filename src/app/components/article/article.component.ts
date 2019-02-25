@@ -15,9 +15,7 @@ export class ArticleComponent implements OnInit {
   public image:string;
   constructor(public userService: UserService, public newsService: NewsService) { }
 
-  ngOnInit() {
-    this.image = this.article.urlToImage || "https://cdn.cnn.com/cnnnext/dam/assets/190207113233-border-wall-us-mexico-super-tease.jpg"
-  }
+  ngOnInit() {}
 
   onDelete(data) {
     this.newsService.deleteArticle(this.article._id, false)
