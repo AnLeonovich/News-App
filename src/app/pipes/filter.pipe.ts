@@ -6,6 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterPipe implements PipeTransform {
 
   transform(value: any, keyword: any, filterCount:any): any {
+
     if (!value) {
       return;
     }

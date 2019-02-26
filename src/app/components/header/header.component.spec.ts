@@ -28,4 +28,16 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should login', () => {
+    const service: UserService = TestBed.get(UserService);
+    component.login();
+    expect(service.isAuthorized()).toBe(true)
+  });
+
+  it('should logout', () => {
+    const service: UserService = TestBed.get(UserService);
+    component.logout();
+    expect(service.isAuthorized()).toBe(false)
+  });
 });

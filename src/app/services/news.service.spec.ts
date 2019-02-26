@@ -140,7 +140,7 @@ describe('NewsService', () => {
     });
   });
 
-  it('should return soutces if they are already gotten', async (done) => {
+  it('should return sources if they are already gotten', async (done) => {
     const service: NewsService = TestBed.get(NewsService);
     await service.getSources().subscribe(async (result) => {
       await service.getSources().subscribe((result) => {
@@ -165,14 +165,14 @@ describe('NewsService', () => {
     });
   });
 
-  it('should get articles from local source', async (done) => {
+  /* it('should get articles from local source', async (done) => {
     const service: NewsService = TestBed.get(NewsService);
     service.selectSource(mockSources[10]);
     await service.getArticles().subscribe(result => {
       expect(result.length).toBeGreaterThan(0)
       done();
     });
-  });
+  }); */
 
   it('should get article', async (done) => {
     const service: NewsService = TestBed.get(NewsService);

@@ -9,7 +9,7 @@
   </div> 
   <div class="article__buttons">
     <button class="article__button" routerLink="/edit/{{article.id}}" *ngIf="show" [disabled]="!userService.isAuthorized()">Edit</button>
-    <button class='article__button' *ngIf="show" [disabled]="!userService.isAuthorized()" (click)="onDelete()">Delete</button>
+    <button class='article__button delete' *ngIf="show" [disabled]="!userService.isAuthorized()" (click)="onDelete()">Delete</button>
     <button class='article__button' routerLink="/news/{{article.id}}">Read</button>
   </div>
 </article>

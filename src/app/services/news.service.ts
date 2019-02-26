@@ -23,6 +23,8 @@ export class NewsService {
   constructor(private http: HttpClient, private router: Router) {}
 
   public getSources() {
+
+
     if (this.sourcesList) {
       return this.sourcesList
     } else {
@@ -81,7 +83,6 @@ export class NewsService {
   }
 
   public getArticle(id) {
-    console.log('TEST', id)
     let article = this.articles.filter((article) => {
       return article.id === parseInt(id);
     })

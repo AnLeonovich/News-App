@@ -12,7 +12,7 @@
   </div>
   <div class="full-article__buttons" *ngIf="local">
     <button class='full-article__button' routerLink="/edit/{{article.id}}" [disabled]="!userService.isAuthorized()">Edit</button>
-    <button class='full-article__button' [disabled]="!userService.isAuthorized()" (click)="onDelete()">Delete</button>
+    <button class='full-article__button delete' [disabled]="!userService.isAuthorized()" (click)="onDelete()">Delete</button>
   </div>
 </article>
 <div class="free-space"></div>
