@@ -12,7 +12,6 @@ export class ArticleComponent implements OnInit {
   @Input() show: Object;
   @Output() Delete = new EventEmitter<string>();
 
-  public image:string;
   constructor(public userService: UserService, public newsService: NewsService) { }
 
   ngOnInit() {}
