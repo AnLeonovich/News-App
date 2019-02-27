@@ -30,7 +30,6 @@
       <input type="textarea" name="sourceURL" class="create-input" formControlName="url">
     </label>
     <div class="create-buttons">
-      <p>{{myForm.invalid}}</p>
       <input type="submit" value="Save" class="save-button" [disabled]="myForm.invalid">
       <input type="reset" value="Cancel" class="cancel-button" (click)="onCancel()">
     </div>
